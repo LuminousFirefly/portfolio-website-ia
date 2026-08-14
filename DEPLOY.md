@@ -28,7 +28,17 @@ backend:
 
 Commit and push that change.
 
-## 3. Deploy to Netlify
+## 3. Add Arnob as a collaborator
+
+He needs write access to the repo so the CMS can actually publish his edits
+as commits.
+
+1. On GitHub: repo → **Settings → Collaborators → Add people**.
+2. Enter his GitHub username or the email tied to his account.
+3. He accepts the invite (email or GitHub notification). If he doesn't have
+   a GitHub account yet, he'll need to create one (free) first.
+
+## 4. Deploy to Netlify
 
 1. Go to [app.netlify.com](https://app.netlify.com) → **Add new site → Import an existing project**.
 2. Pick the `arnob-website` GitHub repo.
@@ -41,11 +51,11 @@ That's it — no extra OAuth app to register. Netlify automatically issues the
 GitHub login for Decap CMS's `backend: github` as long as the site is
 deployed there and connected to that repo.
 
-## 4. Arnob's editing workflow, going forward
+## 5. Arnob's editing workflow, going forward
 
 1. Go to `https://YOUR-SITE.netlify.app/admin/`
-2. Click **Login with GitHub** and authorize once (he'll need a free GitHub
-   account, or you can add him as a collaborator on the repo).
+2. Click **Login with GitHub** and authorize once (only works after he's
+   accepted the collaborator invite in step 3).
 3. Edit content, click **Publish**.
 4. Netlify rebuilds the site automatically (~30–60s) and the change goes live.
 
