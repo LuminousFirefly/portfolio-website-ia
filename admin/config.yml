@@ -1,0 +1,135 @@
+# Decap CMS configuration
+#
+# Local editing (no setup needed):
+#   npm run cms      (starts the local git proxy on port 8081)
+#   npm start        (starts the site on port 8080)
+#   open http://localhost:8080/admin/
+#
+# Going live: see DEPLOY.md for the one-time GitHub + Netlify setup that
+# turns on "backend: github" below for real, hosted editing.
+
+backend:
+  name: github
+  repo: YOUR_GITHUB_USERNAME/arnob-website # <-- update after creating the GitHub repo
+  branch: main
+
+local_backend: true
+
+media_folder: "assets/img/uploads"
+public_folder: "/assets/img/uploads"
+
+collections:
+  - name: "settings"
+    label: "Site Settings"
+    editor:
+      preview: false
+    files:
+      - file: "content/_data/site.json"
+        label: "General"
+        name: "general"
+        fields:
+          - { label: "Full Name", name: "name", widget: "string" }
+          - { label: "Hero Name — line 1", name: "heroNameLine1", widget: "string" }
+          - { label: "Hero Name — line 2", name: "heroNameLine2", widget: "string" }
+          - { label: "Location", name: "location", widget: "string" }
+          - { label: "Role / Tagline", name: "role", widget: "string" }
+          - { label: "Hero Description", name: "heroDescription", widget: "text" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Phone (display)", name: "phone", widget: "string" }
+          - { label: "Phone (tel: link, e.g. +16822842754)", name: "phoneHref", widget: "string" }
+          - { label: "LinkedIn URL", name: "linkedin", widget: "string" }
+          - { label: "Headshot", name: "headshot", widget: "image" }
+          - { label: "Résumé PDF", name: "resumeFile", widget: "file" }
+          - label: "Stats strip"
+            name: "stats"
+            widget: "list"
+            summary: "{{fields.num}} — {{fields.label}}"
+            fields:
+              - { label: "Number", name: "num", widget: "string" }
+              - { label: "Label", name: "label", widget: "string" }
+          - label: "About paragraphs"
+            name: "about"
+            widget: "list"
+            field: { label: "Paragraph", name: "paragraph", widget: "text" }
+          - label: "Education"
+            name: "education"
+            widget: "object"
+            fields:
+              - { label: "School / Department", name: "school", widget: "string" }
+              - { label: "University", name: "university", widget: "string" }
+              - { label: "GPA line", name: "gpa", widget: "string" }
+              - label: "Courses"
+                name: "courses"
+                widget: "list"
+                field: { label: "Course", name: "course", widget: "string" }
+          - { label: "Contact Section Description", name: "contactDesc", widget: "text" }
+
+  - name: "skills"
+    label: "Skills"
+    editor:
+      preview: false
+    files:
+      - file: "content/_data/skills.json"
+        label: "Skills & Languages"
+        name: "skills"
+        fields:
+          - label: "Skill tags"
+            name: "tags"
+            widget: "list"
+            summary: "{{fields.skill}}"
+            field: { label: "Skill", name: "skill", widget: "string" }
+          - label: "Languages"
+            name: "languages"
+            widget: "list"
+            summary: "{{fields.name}} — {{fields.level}}%"
+            fields:
+              - { label: "Language", name: "name", widget: "string" }
+              - { label: "Proficiency (0–100)", name: "level", widget: "number", min: 0, max: 100, value_type: "int" }
+
+  - name: "experience"
+    label: "Experience"
+    label_singular: "Experience entry"
+    folder: "content/experience"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} — {{org}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "Job Title", name: "title", widget: "string" }
+      - { label: "Organization", name: "org", widget: "string" }
+      - { label: "Duration (e.g. \"2 years\")", name: "duration", widget: "string" }
+      - { label: "Order (lower = higher up)", name: "order", widget: "number", default: 10, value_type: "int" }
+      - { label: "Description", name: "body", widget: "markdown", minimal: true, buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"] }
+
+  - name: "volunteer"
+    label: "Volunteer & Leadership"
+    label_singular: "Volunteer entry"
+    folder: "content/volunteer"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}} — {{org}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "Role Title", name: "title", widget: "string" }
+      - { label: "Organization", name: "org", widget: "string" }
+      - { label: "Badge / Category (e.g. \"Logistics\")", name: "tag", widget: "string" }
+      - { label: "Order (lower = higher up)", name: "order", widget: "number", default: 10, value_type: "int" }
+      - { label: "Description", name: "body", widget: "markdown", minimal: true, buttons: ["bold", "italic", "link", "bulleted-list", "numbered-list"] }
+
+  - name: "pages"
+    label: "Pages"
+    label_singular: "Page"
+    folder: "content/pages"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}}"
+    editor:
+      preview: false
+    fields:
+      - { label: "Title", name: "title", widget: "string", hint: "Also becomes the page's web address, e.g. \"Projects\" → /projects/" }
+      - { label: "Nav Label", name: "navLabel", widget: "string", required: false, hint: "Leave blank to use the Title in the menu" }
+      - { label: "Show in navigation menu", name: "showInNav", widget: "boolean", default: true }
+      - { label: "Nav Order (lower = further left)", name: "navOrder", widget: "number", default: 10, value_type: "int" }
+      - { label: "Content", name: "body", widget: "markdown" }

@@ -1,0 +1,170 @@
+---
+layout: layouts/base.njk
+permalink: /
+pageDescription: "Iasin Arafat Arnob — business student, creative producer, and event & media professional based in Irving, Texas."
+---
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap hero-inner">
+    <div class="hero-text">
+      <p class="eyebrow reveal">{{ site.location }}</p>
+      <h1 class="reveal">{{ site.heroNameLine1 }}<br>{{ site.heroNameLine2 }}</h1>
+      <p class="hero-role reveal">{{ site.role }}</p>
+      <p class="hero-desc reveal">{{ site.heroDescription }}</p>
+      <div class="hero-actions reveal">
+        <a href="#contact" class="btn btn-primary">Get in touch</a>
+        <a href="{{ site.resumeFile }}" class="btn btn-ghost" download>Download résumé</a>
+      </div>
+      <div class="hero-social reveal">
+        <a href="{{ site.linkedin }}" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+        <a href="tel:{{ site.phoneHref }}">{{ site.phone }}</a>
+      </div>
+    </div>
+    <div class="hero-media reveal">
+      <div class="arch">
+        <img src="{{ site.headshot }}" alt="Portrait of {{ site.name }}">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS STRIP -->
+<section class="stats">
+  <div class="wrap stats-inner">
+    {% for stat in site.stats %}
+    <div class="stat">
+      <span class="stat-num">{{ stat.num }}</span>
+      <span class="stat-label">{{ stat.label }}</span>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="wrap">
+    <p class="kicker reveal">About</p>
+    <h2 class="reveal">A little about me</h2>
+    <div class="about-grid">
+      {% for para in site.about %}
+      <p class="about-copy reveal">{{ para }}</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section section-alt" id="experience">
+  <div class="wrap">
+    <p class="kicker reveal">Experience</p>
+    <h2 class="reveal">Where I&rsquo;ve worked</h2>
+
+    <div class="timeline">
+      {% for item in collections.experienceList %}
+      <div class="timeline-item reveal">
+        <div class="timeline-marker"></div>
+        <div class="timeline-content">
+          <div class="timeline-head">
+            <h3>{{ item.data.title }}</h3>
+            <span class="timeline-meta">{{ item.data.org }} · {{ item.data.duration }}</span>
+          </div>
+          {{ item.templateContent | safe }}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="wrap">
+    <p class="kicker reveal">Skills</p>
+    <h2 class="reveal">What I bring to the table</h2>
+
+    <div class="skills-grid">
+      <div class="skills-tags reveal">
+        {% for skill in skills.tags %}
+        <span class="tag">{{ skill }}</span>
+        {% endfor %}
+      </div>
+
+      <div class="languages reveal">
+        <h3>Languages</h3>
+        {% for lang in skills.languages %}
+        <div class="lang-row">
+          <span class="lang-name">{{ lang.name }}</span>
+          <div class="lang-bar"><span style="width:{{ lang.level }}%"></span></div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VOLUNTEER -->
+<section class="section section-alt" id="volunteer">
+  <div class="wrap">
+    <p class="kicker reveal">Volunteer &amp; Leadership</p>
+    <h2 class="reveal">Giving back</h2>
+
+    <div class="card-grid">
+      {% for item in collections.volunteerList %}
+      <div class="card reveal">
+        <span class="card-tag">{{ item.data.tag }}</span>
+        <h3>{{ item.data.title }}</h3>
+        <span class="card-org">{{ item.data.org }}</span>
+        {{ item.templateContent | safe }}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section" id="education">
+  <div class="wrap">
+    <p class="kicker reveal">Education</p>
+    <h2 class="reveal">Academics</h2>
+    <div class="edu-block reveal">
+      <div class="edu-head">
+        <h3>{{ site.education.school }}</h3>
+        <span class="timeline-meta">{{ site.education.university }}</span>
+      </div>
+      <p class="edu-gpa">{{ site.education.gpa }}</p>
+      <div class="courses">
+        {% for course in site.education.courses %}
+        <span class="tag tag-light">{{ course }}</span>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact" id="contact">
+  <div class="wrap contact-inner">
+    <p class="kicker reveal light">Contact</p>
+    <h2 class="reveal light">Let&rsquo;s work together</h2>
+    <p class="contact-desc reveal light">{{ site.contactDesc }}</p>
+    <div class="contact-links reveal">
+      <a href="mailto:{{ site.email }}" class="contact-link">
+        <span class="contact-label">Email</span>
+        <span class="contact-value">{{ site.email }}</span>
+      </a>
+      <a href="tel:{{ site.phoneHref }}" class="contact-link">
+        <span class="contact-label">Phone</span>
+        <span class="contact-value">{{ site.phone }}</span>
+      </a>
+      <a href="{{ site.linkedin }}" target="_blank" rel="noopener" class="contact-link">
+        <span class="contact-label">LinkedIn</span>
+        <span class="contact-value">in/iasin-arnob-b8428a31b ↗</span>
+      </a>
+      <span class="contact-link contact-static">
+        <span class="contact-label">Location</span>
+        <span class="contact-value">{{ site.location }}</span>
+      </span>
+    </div>
+  </div>
+</section>

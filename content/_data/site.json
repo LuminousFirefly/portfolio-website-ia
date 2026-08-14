@@ -1,0 +1,31 @@
+{
+  "name": "Iasin Arafat Arnob",
+  "heroNameLine1": "Iasin Arafat",
+  "heroNameLine2": "Arnob",
+  "location": "Irving, Texas",
+  "role": "Business Student & Creative Producer",
+  "heroDescription": "I bring people, stories, and events together — from managing logistics for community foundations to shooting, editing, and directing video content. Currently studying at the School of Business, University of North Texas.",
+  "email": "iasinarnob@my.unt.edu",
+  "phone": "682-284-2754",
+  "phoneHref": "+16822842754",
+  "linkedin": "https://www.linkedin.com/in/iasin-arnob-b8428a31b/",
+  "headshot": "/assets/img/headshot.jpg",
+  "resumeFile": "/assets/resume_arnob.pdf",
+  "stats": [
+    { "num": "3.8", "label": "GPA · Dean's List" },
+    { "num": "3+", "label": "Years in customer-facing roles" },
+    { "num": "4", "label": "Foundations volunteered with" },
+    { "num": "3", "label": "Languages spoken" }
+  ],
+  "about": [
+    "I'm a motivated and dedicated professional currently pursuing my degree at the School of Business, University of North Texas, where I hold a 3.8 GPA and a place on the Dean's List. During the COVID-19 pandemic, I took the initiative to organize and lead multiple charity events — an experience that shaped how I think about leadership, logistics, and showing up for a community.",
+    "I care about clear communication and thoughtful problem-solving, whether that means managing a front desk, coordinating logistics for a foundation, or telling a story through video. I'm equally comfortable working independently or as part of a team, and I bring the same attention to detail to a spreadsheet as I do to a storyboard."
+  ],
+  "education": {
+    "school": "School of Business",
+    "university": "University of North Texas",
+    "gpa": "3.8 GPA · Dean's List",
+    "courses": ["BCIS 2610", "MUMH 2050"]
+  },
+  "contactDesc": "Whether it's an event to coordinate, a video to edit, or an opportunity to talk through — I'd love to hear from you."
+}

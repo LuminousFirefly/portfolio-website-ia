@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% if title %}{{ title }} — {{ site.name }}{% else %}{{ site.name }} — Portfolio{% endif %}</title>
+<meta name="description" content="{{ pageDescription or site.heroDescription }}">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<header class="site-header" id="siteHeader">
+  <div class="wrap header-inner">
+    <a href="/" class="logo">IA<span>.</span></a>
+    <nav class="nav" id="nav">
+      <a href="/#about">About</a>
+      <a href="/#experience">Experience</a>
+      <a href="/#skills">Skills</a>
+      <a href="/#volunteer">Volunteer</a>
+      <a href="/#education">Education</a>
+      {% for p in collections.pagesList %}<a href="{{ p.url }}">{{ p.data.navLabel or p.data.title }}</a>
+      {% endfor %}<a href="/#contact" class="nav-cta">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main>
+{{ content | safe }}
+</main>
+
+<footer class="footer">
+  <div class="wrap footer-inner">
+    <span>&copy; <span id="year"></span> {{ site.name }}.</span>
+    <a href="/#top">Back to top ↑</a>
+  </div>
+</footer>
+
+<script src="/assets/js/script.js"></script>
+</body>
+</html>
