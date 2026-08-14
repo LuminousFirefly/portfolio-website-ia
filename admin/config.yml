@@ -5,13 +5,17 @@
 #   npm start        (starts the site on port 8080)
 #   open http://localhost:8080/admin/
 #
-# Going live: see DEPLOY.md for the one-time GitHub + Netlify setup that
-# turns on "backend: github" below for real, hosted editing.
+# Going live: see DEPLOY.md for the one-time GitHub OAuth App + Netlify env
+# var setup this site needs (Netlify's automatic CMS login doesn't work for
+# GitHub-App-connected repos, so /auth and /callback are handled by our own
+# Netlify Functions in netlify/functions/ instead of api.netlify.com).
 
 backend:
   name: github
-  repo: LuminousFirefly/portfolio-website-ia # <-- update after creating the GitHub repo
+  repo: LuminousFirefly/portfolio-website-ia
   branch: main
+  base_url: https://iasinarnob.netlify.app
+  auth_endpoint: auth
 
 local_backend: true
 

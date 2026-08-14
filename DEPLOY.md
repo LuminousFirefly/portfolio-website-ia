@@ -47,11 +47,34 @@ as commits.
    - Publish directory: `_site`
 4. Deploy. Netlify gives you a live URL (you can add a custom domain later).
 
-That's it — no extra OAuth app to register. Netlify automatically issues the
-GitHub login for Decap CMS's `backend: github` as long as the site is
-deployed there and connected to that repo.
+## 5. Set up the CMS login (GitHub OAuth App)
 
-## 5. Arnob's editing workflow, going forward
+Netlify used to issue the CMS's GitHub login automatically, but that only
+works for repos connected the old "OAuth App" way — repos connected via
+Netlify's newer **GitHub App** integration (the current default) get a
+`404 Not Found` from `api.netlify.com/auth` when you try to log in. This site
+works around that with its own tiny OAuth relay, built as two Netlify
+Functions already in the repo (`netlify/functions/auth.js` and
+`callback.js`), wired up via `netlify.toml`. You just need to give them a
+GitHub OAuth App to talk to:
+
+1. Go to [github.com/settings/developers](https://github.com/settings/developers) → **OAuth Apps → New OAuth App**.
+2. Fill in:
+   - **Application name**: anything, e.g. "Arnob Portfolio CMS"
+   - **Homepage URL**: `https://YOUR-SITE.netlify.app`
+   - **Authorization callback URL**: `https://YOUR-SITE.netlify.app/callback`
+3. Register, then **Generate a new client secret** — copy both the Client ID
+   and the secret now (the secret is only shown once).
+4. In Netlify: **Site settings → Environment variables → Add a variable**,
+   add both:
+   - `OAUTH_CLIENT_ID` = the Client ID
+   - `OAUTH_CLIENT_SECRET` = the Client secret
+5. Trigger a redeploy (Netlify → Deploys → **Trigger deploy**) so the
+   functions pick up the new env vars.
+6. Also double-check `admin/config.yml` — `base_url` must match your actual
+   Netlify URL exactly (`https://YOUR-SITE.netlify.app`).
+
+## 6. Arnob's editing workflow, going forward
 
 1. Go to `https://YOUR-SITE.netlify.app/admin/`
 2. Click **Login with GitHub** and authorize once (only works after he's
